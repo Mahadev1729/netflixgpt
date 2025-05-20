@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utilis/validate";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utilis/firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -15,12 +17,39 @@ const Login = () => {
 
   const handelButtonClick = () => {
     // validate the form data using utilis
-    const message = checkValidData(email.current.value, password.current.value, fullname.current.value);
-
+    const message = checkValidData(
+      email.current.value,
+      password.current.value,
+      fullname.current.value
+    );
 
     setErrorMessage(message);
 
-    // after validation you can sign 
+    if (message) return;
+    //Sign In sign up logic
+
+    if (!isSignInForm) {
+      // sign up logic
+
+      // you can use once instead of using again
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed Up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage + "-" + errorCode);
+        });
+    } else {
+      // sign in logic
+    }
   };
   return (
     <div>
