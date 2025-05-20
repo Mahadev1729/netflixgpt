@@ -7,7 +7,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
-  const fullname=useRef(null);
+  const fullname = useRef(null);
 
   const toggelSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -15,9 +15,9 @@ const Login = () => {
 
   const handelButtonClick = () => {
     // validate the form data using utilis
-    const message = checkValidData(email.current.value, password.current.value,fullname.current.value);
-    
-   
+    const message = checkValidData(email.current.value, password.current.value, fullname.current.value);
+
+
     setErrorMessage(message);
 
     // after validation you can sign 
