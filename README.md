@@ -15,6 +15,16 @@ If you are developing a production application, we recommend using TypeScript wi
 
 "# netflixgpt" 
 
+  - create-vite+react
+  - configuration of Tailwindcss
+  - Header
+  - Routing of app
+  - Login form
+  - SignUp form
+  - Form validation
+  - useRef Hook
+  - Create SignUp User Account
+
 Features
     Login/Sign Up
     Sign In /Sign up Form
@@ -42,3 +52,5 @@ after resetup build Feature like form validati for Login and signup
    3-Firebase init
    4-firebase deploy
      --select project which is in firebase
+
+## lets build authentication     
