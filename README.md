@@ -38,3 +38,7 @@ after resetup build Feature like form validati for Login and signup
    firebase as backend:
      
    1-npm install firebase
+   2-firebase Login
+   3-Firebase init
+   4-firebase deploy
+     --select project which is in firebase
