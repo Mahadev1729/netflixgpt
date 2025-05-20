@@ -37,3 +37,4 @@ after resetup build Feature like form validati for Login and signup
 
    firebase as backend:
      
+   1-npm install firebase
