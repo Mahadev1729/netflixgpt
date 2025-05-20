@@ -9,6 +9,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
+  const fullName=useRef(null);
 
 
   const toggelSignInForm = () => {
@@ -20,6 +21,7 @@ const Login = () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
+      fullName.current.value
     )
 
 
