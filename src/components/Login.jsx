@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utilis/validate";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utilis/firebase";
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
- 
+
 
   const toggelSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -21,7 +21,7 @@ const Login = () => {
       email.current.value,
       password.current.value,
     )
-      
+
 
     setErrorMessage(message);
 
@@ -49,6 +49,17 @@ const Login = () => {
         });
     } else {
       // sign in logic
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+
     }
   };
   return (
@@ -71,7 +82,7 @@ const Login = () => {
 
         {!isSignInForm && (
           <input
-            
+
             type="text"
             placeholder="Full Name"
             className="p-4 m-4 w-full bg-gray-600 rounded-lg"
