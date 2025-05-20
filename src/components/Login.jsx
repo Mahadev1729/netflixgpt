@@ -9,7 +9,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
-  const fullname = useRef(null);
+ 
 
   const toggelSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -20,8 +20,8 @@ const Login = () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
-      fullname.current.value
-    );
+    )
+      
 
     setErrorMessage(message);
 
@@ -71,7 +71,7 @@ const Login = () => {
 
         {!isSignInForm && (
           <input
-            ref={fullname}
+            
             type="text"
             placeholder="Full Name"
             className="p-4 m-4 w-full bg-gray-600 rounded-lg"
