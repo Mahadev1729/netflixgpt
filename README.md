@@ -53,4 +53,8 @@ after resetup build Feature like form validati for Login and signup
    4-firebase deploy
      --select project which is in firebase
 
-## lets build authentication     
+## lets build authentication    
+
+   use of redux Store: 
+     npm i -D @reduxjs/toolkit
+     npm install react-redux
