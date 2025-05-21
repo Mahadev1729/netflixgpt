@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utilis/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utilis/firebase";
 
 const Login = () => {
@@ -9,8 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
-  const fullName=useRef(null);
-
+  const fullName = useRef(null);
 
   const toggelSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -21,9 +23,8 @@ const Login = () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
-      fullName.current.value,
-     )
-     
+      fullName.current.value
+    );
 
     setErrorMessage(message);
 
@@ -51,9 +52,13 @@ const Login = () => {
         });
     } else {
       // sign in logic
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
-          // Signed in 
+          // Signed in
           const user = userCredential.user;
           console.log(user);
           // ...
@@ -61,9 +66,8 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(`${errorCode}-${errorMessage}`)
+          setErrorMessage(`${errorCode}-${errorMessage}`);
         });
-
     }
   };
   return (
