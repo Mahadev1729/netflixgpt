@@ -21,9 +21,9 @@ const Login = () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
-      fullName.current.value
-    )
-
+      fullName.current.value,
+     )
+     
 
     setErrorMessage(message);
 
@@ -86,7 +86,7 @@ const Login = () => {
 
         {!isSignInForm && (
           <input
-
+            ref={fullName}
             type="text"
             placeholder="Full Name"
             className="p-4 m-4 w-full bg-gray-600 rounded-lg"
