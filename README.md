@@ -24,6 +24,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - Form validation
   - useRef Hook
   - Create SignUp User Account
+  - implement sign in user api
+  - create our redux store with userslice
 
 Features
     Login/Sign Up
@@ -58,3 +60,4 @@ after resetup build Feature like form validati for Login and signup
    use of redux Store: 
      npm i -D @reduxjs/toolkit
      npm install react-redux
+    
