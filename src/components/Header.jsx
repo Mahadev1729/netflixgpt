@@ -1,4 +1,23 @@
+import { signOut} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../utilis/firebase";
+
+
 const Header = () => {
+  const navigate=useNavigate();
+  
+  
+  const handleSignOut=()=>{
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/")
+      })
+      .catch((error) => {
+        // An error happened.
+        navigate('/error');
+      });
+  }
   return (
     <div className="w-full absolute px-8 py-8 bg-gradient-to-b from from-black z-10 flex justify-between">
       <img
@@ -13,7 +32,7 @@ const Header = () => {
             src="https://th.bing.com/th/id/OIP.iy4sZmuHzfHToTYmzh1kswHaHa?rs=1&pid=ImgDetMain"
             alt="user icon"
           />
-          <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
+          <button onClick={handleSignOut} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
             Sign Out
           </button>
         </div>
