@@ -8,10 +8,12 @@ import {
 import { auth } from "../utilis/firebase";
 import { useNavigate } from "react-router-dom";
 
+import { updateProfile } from "firebase/auth";
+
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -46,8 +48,22 @@ const Login = () => {
         .then((userCredential) => {
           // Signed Up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            photoURL:
+              "https://avatars.githubusercontent.com/u/191627391?s=96&v=4",
+          })
+            .then(() => {
+              // Profile updated!
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              setErrorMessage(error.message);
+            });
           console.log(user);
-          navigate("/browse")
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -65,7 +81,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse")
+          navigate("/browse");
           // ...
         })
         .catch((error) => {

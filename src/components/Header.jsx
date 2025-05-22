@@ -32,7 +32,7 @@ const Header = () => {
             src="https://th.bing.com/th/id/OIP.iy4sZmuHzfHToTYmzh1kswHaHa?rs=1&pid=ImgDetMain"
             alt="user icon"
           />
-          <button onClick={handleSignOut} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
+          <button onClick={handleSignOut} className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
             Sign Out
           </button>
         </div>
