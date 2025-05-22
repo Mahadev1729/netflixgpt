@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter} from "react-router-dom";
 import Browse from "./Browse";
 import Login from "./Login";
 import { RouterProvider } from "react-router-dom";
@@ -10,8 +10,7 @@ import { addUser, removeUser } from "../utilis/userSlice";
 
 const Body = () => {
     const dispatch=useDispatch();
-
-
+   
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -19,7 +18,7 @@ const Body = () => {
     },
     {
       path: "/browse",
-      element: <Body />,
+      element: <Browse/>,
     },
   ]);
 
@@ -29,10 +28,12 @@ const Body = () => {
       if (user) {
         const {uid, email, displayName } = user;
         dispatch(addUser({uid:uid,email:email,displayName:displayName}));
+        // direct to 
+        
         // ...
       } else {
         dispatch(removeUser());
-        
+       
       }
     });
   }, []);
