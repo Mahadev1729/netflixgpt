@@ -4,7 +4,7 @@ const Browse=()=>{
     return(
         <>
         <Header/>
-        <h> hello welcome to broswe page</h>
+        <h1> hello welcome to broswe page</h1>
         </>
     )
 }

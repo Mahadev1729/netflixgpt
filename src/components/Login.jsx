@@ -28,7 +28,7 @@ const Login = () => {
     const message = checkValidData(
       email.current.value,
       password.current.value,
-      fullName.current.value
+      
     );
 
     setErrorMessage(message);
