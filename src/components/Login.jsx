@@ -25,11 +25,7 @@ const Login = () => {
 
   const handelButtonClick = () => {
     // validate the form data using utilis
-    const message = checkValidData(
-      email.current.value,
-      password.current.value,
-      
-    );
+    const message = checkValidData(email.current.value, password.current.value);
 
     setErrorMessage(message);
 
@@ -51,7 +47,7 @@ const Login = () => {
           updateProfile(user, {
             displayName: fullName.current.value,
             photoURL:
-              "https://avatars.githubusercontent.com/u/191627391?s=96&v=4",
+              "https://th.bing.com/th/id/OIP.yWNibBRepmC6fO7mZnicCgHaHa?rs=1&pid=ImgDetMain",
           })
             .then(() => {
               // Profile updated!
@@ -63,7 +59,6 @@ const Login = () => {
               setErrorMessage(error.message);
             });
           console.log(user);
-          
         })
         .catch((error) => {
           const errorCode = error.code;
