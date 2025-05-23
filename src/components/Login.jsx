@@ -47,7 +47,7 @@ const Login = () => {
           updateProfile(user, {
             displayName: fullName.current.value,
             photoURL:
-              "https://th.bing.com/th/id/OIP.yWNibBRepmC6fO7mZnicCgHaHa?rs=1&pid=ImgDetMain",
+              "hhttps://img.freepik.com/premium-photo/red-user-icon-symbol-website-admin-social-login-element-concept-white-background-3d-rendering_954875-441.jpg",
           })
             .then(() => {
               // Profile updated!

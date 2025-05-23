@@ -26,6 +26,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - Create SignUp User Account
   - implement sign in user api
   - create our redux store with userslice
+  - implement sign out
+  - update Profile
 
 Features
     Login/Sign Up
