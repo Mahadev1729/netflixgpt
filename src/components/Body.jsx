@@ -9,12 +9,12 @@ const Body = () => {
     {
       path: "/",
       element: <Login />,
-      errorElement:<ErrorPage/>
+      errorElement: <ErrorPage />,
     },
     {
       path: "/browse",
       element: <Browse />,
-      errorElement:<ErrorPage/>,
+      errorElement: <ErrorPage />,
     },
   ]);
 

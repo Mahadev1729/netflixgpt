@@ -9,17 +9,17 @@ import { auth } from "../utilis/firebase";
 import { addUser } from "../utilis/userSlice";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "firebase/auth";
+import { PHOTO_URL } from "../utilis/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
 
-  
   const handelButtonClick = () => {
     // validate the form data using utilis
     const message = checkValidData(email.current.value, password.current.value);
@@ -43,8 +43,8 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL:
-              "https://th.bing.com/th/id/OIP.yWNibBRepmC6fO7mZnicCgHaHa?rs=1&pid=ImgDetMain",
+            photoURL:{PHOTO_URL}
+              
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -80,7 +80,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-        
+
           // ...
         })
         .catch((error) => {

@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utilis/userSlice";
+import { LOGO_URL } from "../utilis/constant";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -16,12 +17,10 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        
       })
       .catch((error) => {
         // An error happened.
         console.log(error);
-        
       });
   };
   useEffect(() => {
@@ -43,7 +42,7 @@ const Header = () => {
         navigate("/");
       }
     });
-    // for unmount 
+    // for unmount
     // unsubscribe
     return () => unsubscribe();
   }, []);
@@ -51,7 +50,7 @@ const Header = () => {
     <div className="w-full absolute px-8 py-8 bg-gradient-to-b from from-black z-10 flex justify-between">
       <img
         className="w-80"
-        src="https://www.freepnglogos.com/uploads/red-netflix-logo-text-png-3.png"
+        src={LOGO_URL}
         alt="Logo"
       />
       {user && (
