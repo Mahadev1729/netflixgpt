@@ -28,6 +28,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - create our redux store with userslice
   - implement sign out
   - update Profile
+  - BugFix:sign up user displayName and profile picture update
+  - BugFix:if the user is not logged in redirect/bro
 
 Features
     Login/Sign Up
