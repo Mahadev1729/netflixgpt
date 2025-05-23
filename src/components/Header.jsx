@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utilis/userSlice";
-import { LOGO_URL } from "../utilis/constant";
+import { LOGO_URL, USER_AVATAR } from "../utilis/constant";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -58,7 +58,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <img
               className="w-10 h-10 rounded-full border border-gray-300 shadow-sm"
-              src={user?.photoURL}
+              src={USER_AVATAR}
               alt="user icon"
             />
             <button
