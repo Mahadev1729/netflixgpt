@@ -30,6 +30,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - update Profile
   - BugFix:sign up user displayName and profile picture update
   - BugFix:if the user is not logged in redirect/browser vica versa
+  - unsubscribed to the onAuthStateChanged callback
 
 Features
     Login/Sign Up

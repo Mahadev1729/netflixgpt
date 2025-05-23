@@ -25,7 +25,8 @@ const Header = () => {
       });
   };
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    // kind like eventlistner
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(
@@ -42,6 +43,9 @@ const Header = () => {
         navigate("/");
       }
     });
+    // for unmount 
+    // unsubscribe
+    return () => unsubscribe();
   }, []);
   return (
     <div className="w-full absolute px-8 py-8 bg-gradient-to-b from from-black z-10 flex justify-between">
