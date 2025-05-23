@@ -9,7 +9,7 @@ import { auth } from "../utilis/firebase";
 import { addUser } from "../utilis/userSlice";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "firebase/auth";
-import { PHOTO_URL } from "../utilis/constant";
+import { BACKGROUND_IMAGE, USER_AVATAR } from "../utilis/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -43,7 +43,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL:{PHOTO_URL}
+            photoURL:{USER_AVATAR}
               
           })
             .then(() => {
@@ -101,7 +101,7 @@ const Login = () => {
       <div className="absolute w-screen h-screen overflow-hidden">
         <img
           className="w-full h-full object-cover"
-          src="https://www.teknofilo.com/wp-content/uploads/2021/06/Netflix-1280x720.jpg"
+          src={BACKGROUND_IMAGE}
           alt="Background_image"
         />
       </div>
