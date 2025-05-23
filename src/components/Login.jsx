@@ -4,16 +4,17 @@ import { checkValidData } from "../utilis/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utilis/firebase";
-import { addUser } from "../utilis/userSlice";
 import { useDispatch } from "react-redux";
-import { updateProfile } from "firebase/auth";
+import { addUser } from "../utilis/userSlice";
 import { BACKGROUND_IMAGE, USER_AVATAR } from "../utilis/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -21,78 +22,62 @@ const Login = () => {
   const fullName = useRef(null);
 
   const handelButtonClick = () => {
-    // validate the form data using utilis
     const message = checkValidData(email.current.value, password.current.value);
-
     setErrorMessage(message);
-
     if (message) return;
-    //Sign In sign up logic
+
+    setLoading(true);
 
     if (!isSignInForm) {
-      // sign up logic
-
-      // you can use once instead of using again
+      // Sign up logic
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed Up
           const user = userCredential.user;
-          updateProfile(user, {
+          return updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL:{ USER_AVATAR },
-              
-          })
-            .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(
-                addUser({
-                  uid: uid,
-                  email: email,
-                  displayName: displayName,
-                  photoURL: photoURL,
-                })
-              );
+            photoURL: USER_AVATAR,
+          });
+        })
+        .then(() => {
+          const { uid, email, displayName, photoURL } = auth.currentUser;
+          dispatch(
+            addUser({
+              uid,
+              email,
+              displayName,
+              photoURL,
             })
-            .catch((error) => {
-              // An error occurred
-              // ...
-              setErrorMessage(error.message);
-            });
-          console.log(user);
+          );
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(`${errorCode}-${errorMessage}`);
-        });
+          setErrorMessage(error.message);
+        })
+        .finally(() => setLoading(false));
     } else {
-      // sign in logic
+      // Sign in logic
       signInWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
           console.log(user);
-
-          // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(`${errorCode}-${errorMessage}`);
-        });
+          setErrorMessage(`${error.code} - ${error.message}`);
+        })
+        .finally(() => setLoading(false));
     }
   };
 
   const toggelSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+    setErrorMessage(null);
   };
 
   return (
@@ -102,12 +87,12 @@ const Login = () => {
         <img
           className="w-full h-full object-cover"
           src={BACKGROUND_IMAGE}
-          alt="Background_image"
+          alt="Background"
         />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute p-12 w-3/12 text-white bg-gray-700 bg-opacity-80 my-40 right-0 mx-auto left-0 rounded-4xl border-transparent shadow-sm"
+        className="absolute p-12 w-3/12 text-white bg-gray-700 bg-opacity-80 my-40 right-0 mx-auto left-0 rounded-3xl border-transparent shadow-md"
       >
         <h1 className="font-bold text-3xl py-4 text-center text-cyan-300">
           {isSignInForm ? "Sign In" : "Sign Up"}
@@ -133,18 +118,38 @@ const Login = () => {
           placeholder="Password"
           className="p-4 m-4 w-full bg-gray-600 rounded-lg"
         />
-        <p className="text-red-500 font-bold text-lg">{errorMessage}</p>
-        <div className="flex justify-center">
+
+        {errorMessage && (
+          <p className="text-red-500 font-bold text-lg text-center">
+            {errorMessage}
+          </p>
+        )}
+
+        <div className="flex justify-center mt-6">
           <button
-            className="p-4 m-4 bg-cyan-300 bg-opacity-90 rounded-4xl w-[130px] text-black"
+            className={`p-4 rounded-3xl w-[130px] font-semibold ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-cyan-300 bg-opacity-90 hover:bg-cyan-400"
+            }`}
             onClick={handelButtonClick}
+            disabled={loading}
           >
-            {isSignInForm ? "Sign In" : "Sign Up"}
+            {loading ? (
+              <div className="flex justify-center items-center gap-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Loading...
+              </div>
+            ) : isSignInForm ? (
+              "Sign In"
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </div>
 
         <p
-          className="py-4 cursor-pointer text-center"
+          className="py-4 cursor-pointer text-center hover:text-cyan-300"
           onClick={toggelSignInForm}
         >
           {isSignInForm
