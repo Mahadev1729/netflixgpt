@@ -29,7 +29,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - implement sign out
   - update Profile
   - BugFix:sign up user displayName and profile picture update
-  - BugFix:if the user is not logged in redirect/bro
+  - BugFix:if the user is not logged in redirect/browser vica versa
 
 Features
     Login/Sign Up
