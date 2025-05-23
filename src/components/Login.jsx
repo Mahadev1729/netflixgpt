@@ -6,23 +6,20 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utilis/firebase";
-import { useNavigate } from "react-router-dom";
-
+import { addUser } from "../utilis/userSlice";
+import { useDispatch } from "react-redux";
 import { updateProfile } from "firebase/auth";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
+  const dispatch=useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
 
-  const toggelSignInForm = () => {
-    setIsSignInForm(!isSignInForm);
-  };
-
+  
   const handelButtonClick = () => {
     // validate the form data using utilis
     const message = checkValidData(email.current.value, password.current.value);
@@ -50,8 +47,15 @@ const Login = () => {
               "https://th.bing.com/th/id/OIP.yWNibBRepmC6fO7mZnicCgHaHa?rs=1&pid=ImgDetMain",
           })
             .then(() => {
-              // Profile updated!
-              navigate("/browse");
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
             })
             .catch((error) => {
               // An error occurred
@@ -76,7 +80,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
+        
           // ...
         })
         .catch((error) => {
@@ -86,6 +90,11 @@ const Login = () => {
         });
     }
   };
+
+  const toggelSignInForm = () => {
+    setIsSignInForm(!isSignInForm);
+  };
+
   return (
     <div>
       <Header />

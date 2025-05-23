@@ -2,11 +2,15 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utilis/firebase";
 import { useSelector } from "react-redux";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../utilis/userSlice";
 
 const Header = () => {
-  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     signOut(auth)
@@ -16,9 +20,29 @@ const Header = () => {
       })
       .catch((error) => {
         // An error happened.
+        console.log(error);
         navigate("/error");
       });
   };
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
   return (
     <div className="w-full absolute px-8 py-8 bg-gradient-to-b from from-black z-10 flex justify-between">
       <img
@@ -42,7 +66,8 @@ const Header = () => {
             </button>
           </div>
         </div>
-      )};
+      )}
+      ;
     </div>
   );
 };
