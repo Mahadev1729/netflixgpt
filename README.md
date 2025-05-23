@@ -66,3 +66,4 @@ after resetup build Feature like form validati for Login and signup
      npm i -D @reduxjs/toolkit
      npm install react-redux
     
+## Build the core of project
