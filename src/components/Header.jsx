@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../utilis/firebase";
 import { useSelector } from "react-redux";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
