@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { API_OPTIONS } from "../utilis/constant";
+
+
 import Header from "./Header";
-import { useDispatch } from "react-redux";
-import { addNowPlayingMovies } from "../utilis/movieSlice";
+
+
 
 
 
