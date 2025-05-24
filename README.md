@@ -75,3 +75,4 @@ after resetup build Feature like form validati for Login and signup
   - Add Hardcoded the links into constant
 
 ## start build with browse page
+  -- try to intgrate the tmdb api
