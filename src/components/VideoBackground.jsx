@@ -9,18 +9,20 @@ const VideoBackground = ({ movieId }) => {
       "https://api.themoviedb.org/3/movie/950387/videos?language=en-US",
       API_OPTIONS
     );
-    const json=await data.json();
+    const json = await data.json();
     console.log(json);
 
-    const filterData=json.results.filter(video=>video.type=="Trailer");
-    const trailer=filterData[0];
+    const filterData = json.results.filter((video) => video.type == "Trailer");
+    const trailer = filterData.length ? filterData[0] : json.results[0];
     console.log(trailer);
     console.log(filterData);
   };
-  useEffect(()=>{
-   getMovieVideo();
-  },[])
+  useEffect(() => {
+    getMovieVideo();
+  }, []);
 
   return <div></div>;
 };
+
+
 export default VideoBackground;
