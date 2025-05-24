@@ -9,6 +9,14 @@ const Browse = () => {
   return (
     <div>
       <Header />
+      {/**
+       Main Conatianer
+        -- video background
+        -- ViewTitle
+      SecandaryContainer
+        -- MovieList
+             -- cardList * N
+       */}
     </div>
   );
 };
