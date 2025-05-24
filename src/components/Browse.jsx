@@ -14,7 +14,7 @@ const Browse=()=>{
         )
           const json=await data.json();
           console.log(json.results);
-          dispatch(addNowPlayingMovies);
+          dispatch(addNowPlayingMovies(json.results));
     };
 
     useEffect(()=>{
