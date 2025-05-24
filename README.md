@@ -31,6 +31,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - BugFix:sign up user displayName and profile picture update
   - BugFix:if the user is not logged in redirect/browser vica versa
   - unsubscribed to the onAuthStateChanged callback
+  - Register TMDB API & create an app to get api key and access token
+  - get data from TMBD movie list
 
 Features
     Login/Sign Up
