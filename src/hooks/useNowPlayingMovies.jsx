@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../utilis/movieSlice";
 import { API_OPTIONS } from "../utilis/constant";
 
-const useNowPlayingMovies=()=>{
-
-    const dispatch = useDispatch();
+const useNowPlayingMovies = () => {
+  const dispatch = useDispatch();
 
   const getNowPlayingMovies = async () => {
     const data = await fetch(
@@ -21,4 +20,4 @@ const useNowPlayingMovies=()=>{
     getNowPlayingMovies();
   }, []);
 };
-export default useNowPlayingMovies
+export default useNowPlayingMovies;
