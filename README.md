@@ -81,5 +81,6 @@ after resetup build Feature like form validati for Login and signup
   -- move the movie list to our redux store
 
 ## start create our own custom Hook
+    useNowPlayingMovies()- custom hook
 
-
+## start build browse page
