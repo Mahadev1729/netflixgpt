@@ -84,3 +84,5 @@ after resetup build Feature like form validati for Login and signup
     useNowPlayingMovies()- custom hook
 
 ## start build browse page
+   - design the video title
+   - 
