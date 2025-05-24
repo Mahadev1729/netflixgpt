@@ -1,11 +1,23 @@
-﻿
+﻿import { useSelector } from "react-redux";
 
-const MainContainer=()=>{
-    return(
-        <div>
-            <h1>This is main Conatianer</h1>
-        </div>
-    )
+import VideoTitle from "./VideoTitle";
+import VideoBackground from "./VideoBackground";
 
-}
+const MainContainer = () => {
+  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+
+  if (!movies) return;
+
+  const mainMovie = movies[0];
+  console.log(mainMovie);
+
+  return (
+    // data came from store
+
+    <div>
+      <VideoTitle />
+      <VideoBackground />
+    </div>
+  );
+};
 export default MainContainer;
