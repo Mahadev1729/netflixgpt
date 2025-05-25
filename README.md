@@ -33,6 +33,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - unsubscribed to the onAuthStateChanged callback
   - Register TMDB API & create an app to get api key and access token
   - get data from TMBD movie list
+  - build the MainContainer-{videoTitle,Trailer-autoplay with mute and Background video }
 
 Features
     Login/Sign Up
