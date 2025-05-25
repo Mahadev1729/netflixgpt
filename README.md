@@ -87,4 +87,4 @@ after resetup build Feature like form validati for Login and signup
 
 ## start build browse page
    - design the video title
-   - 
+   - design the Background video/trailer
