@@ -35,6 +35,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - get data from TMBD movie list
   - build the MainContainer-{videoTitle,Trailer-autoplay with mute and Background video }
   ![alt text](image.png)
+  - done with MainContainer✔️
 
 Features
     Login/Sign Up
