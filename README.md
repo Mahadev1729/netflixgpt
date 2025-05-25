@@ -34,6 +34,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - Register TMDB API & create an app to get api key and access token
   - get data from TMBD movie list
   - build the MainContainer-{videoTitle,Trailer-autoplay with mute and Background video }
+  ![alt text](image.png)
 
 Features
     Login/Sign Up
