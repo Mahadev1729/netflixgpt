@@ -1,13 +1,15 @@
 ﻿import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-    console.log(movies)
+    if(!movies || movies.length===0){
+        return <div>No movies display</div>
+    }
   return (
     <div>
       <div>
         <h1>{title}</h1>
         <div>
-          <MovieCard />
+          <MovieCard posterPath={movies[0].poster_path}/>
         </div>
       </div>
     </div>
