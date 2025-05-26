@@ -38,6 +38,7 @@ If you are developing a production application, we recommend using TypeScript wi
   - done with MainContainer✔️
   - done with SecondarayContainer✔️
     ![alt text](image.png)
+  - Building GPT Search Page  
 
 
   -------------------------------------------------------
@@ -106,3 +107,5 @@ after resetup build Feature like form validati for Login and signup
 
 
 ## introduction to GPT
+ -- use openai API
+ -- ChatGPT interface
