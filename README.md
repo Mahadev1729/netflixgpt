@@ -96,3 +96,10 @@ after resetup build Feature like form validati for Login and signup
    - design the Background video/trailer
 
 ## start build SecondaryConatiner   
+   --- contains:
+      -- Video Title;
+      -- background trailer;
+      -- popular Movies;
+      -- now Playing movies;
+      -- topratedMovies 
+      -- Popular movies
