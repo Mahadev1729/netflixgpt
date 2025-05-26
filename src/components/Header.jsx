@@ -55,6 +55,7 @@ const Header = () => {
       />
       {user && (
         <div className="w-full flex justify-end p-4">
+          <button className=" bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-2 px-4 mx-4 my-2 rounded-lg shadow transition duration-200">GPT Search</button>
           <div className="flex items-center gap-4">
             <img
               className="w-10 h-10 rounded-full border border-gray-300 shadow-sm"
