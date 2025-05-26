@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿﻿import { useState } from "react";
 import { IMG_CDN_URL } from "../utilis/constant";
 import ShimmerUi from "./ShimmerUi";
 
