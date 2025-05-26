@@ -14,7 +14,7 @@ const SecandaryContainer = () => {
             title={"Upcoming Movies"}
             movies={movies.upcomingMovies}
           />
-          <MovieList title={"Horror"} movies={movies.nowPlayingMovies} />
+          <MovieList title={"Top Rated"} movies={movies.topratedMovies} />
         </div>
       </div>
     )
