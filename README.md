@@ -36,6 +36,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - build the MainContainer-{videoTitle,Trailer-autoplay with mute and Background video }
   ![alt text](image.png)
   - done with MainContainer✔️
+  - done with SecondarayContainer✔️
+    ![alt text](image.png)
 
 
   -------------------------------------------------------
