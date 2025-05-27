@@ -1,10 +1,19 @@
-﻿
-const GptSearch=()=>{
+﻿import GptMovieSuggestion from "./GptMovieSuggestion";
+import GptSearchBar from "./GptSearchBar";
+import { BACKGROUND_IMAGE } from "../utilis/constant";
+const GptSearch = () => {
   return (
     <div>
-      GPT Search Bar
-      GptMovieSuggestion
+      <div className="absolute w-screen h-screen overflow-hidden -z-10">
+              <img
+                className="w-full h-full object-cover"
+                src={BACKGROUND_IMAGE}
+                alt="Background"
+              />
+            </div>
+      <GptSearchBar />
+      <GptMovieSuggestion />
     </div>
-  )
-}
+  );
+};
 export default GptSearch;
