@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../utilis/userSlice";
 import { LOGO_URL, USER_AVATAR } from "../utilis/constant";
 import { toggleGptSearchView } from "../utilis/gptSlice";
+import DropDownLang from "./DropDownLang";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const Header = () => {
       />
       {user && (
         <div className="w-full flex justify-end p-4">
+          <DropDownLang/>
           <button onClick={handleGptSearchClick} className=" bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-2 px-4 mx-4 my-2 rounded-lg shadow transition duration-200">GPT Search</button>
           <div className="flex items-center gap-4">
             <img
