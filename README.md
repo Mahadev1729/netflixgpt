@@ -39,6 +39,8 @@ If you are developing a production application, we recommend using TypeScript wi
   - done with SecondarayContainer✔️
     ![alt text](image.png)
   - Building GPT Search Page  
+  - building the gpt Search bar 
+  - building the gpt movie Suggestions
 
 
   -------------------------------------------------------

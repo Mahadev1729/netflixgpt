@@ -2,6 +2,8 @@
 const GptSearch=()=>{
   return (
     <div>
+      GPT Search Bar
+      GptMovieSuggestion
     </div>
   )
 }
