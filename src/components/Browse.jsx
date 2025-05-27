@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopratedMovies from "../hooks/useTopratedMovies";
@@ -9,6 +10,8 @@ import SecandaryContainer from "./SecondarayContainer";
 
 const Browse = () => {
   // fetch  data from TMDB API and update here
+
+    const showGptSearch=useSelector(store=>store.gpt.showGptSearch);
     useNowPlayingMovies();
     usePopularMovies();
     useUpcomingMovies();
@@ -17,9 +20,15 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      <GptSearch/>
-      <MainContainer/>
-      <SecandaryContainer/>
+      {showGptSearch ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecandaryContainer />
+        </>
+      )}
+
       {/**
        Main Conatianer
         -- video background
