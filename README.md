@@ -112,3 +112,5 @@ after resetup build Feature like form validati for Login and signup
  -- use openai API
  -- ChatGPT interface 
  -- Multilingual for gpt search✔️
+
+## integrate API Key {openai} 
