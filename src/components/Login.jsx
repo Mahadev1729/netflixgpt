@@ -9,7 +9,7 @@ import {
 import { auth } from "../utilis/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utilis/userSlice";
-import { BACKGROUND_IMAGE, USER_AVATAR } from "../utilis/constant";
+import { BACKGROUND_IMAGE, USER_AVATAR} from "../utilis/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
