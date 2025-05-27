@@ -16,4 +16,38 @@ export const API_OPTIONS = {
 export const IMG_CDN_URL =
   "https://image.tmdb.org/t/p/w780";
   
+  export const SUPPORTED_LANGUAGES = [
+    { identifier: "en", name: "English" },
+    { identifier: "hi", name: "Hindi" },
+    { identifier: "es", name: "Spanish" },
+    { identifier: "fr", name: "French" },
+    { identifier: "de", name: "German" },
+    { identifier: "zh", name: "Chinese" },
+    { identifier: "ja", name: "Japanese" },
+    { identifier: "ru", name: "Russian" },
+    { identifier: "ar", name: "Arabic" },
+    { identifier: "pt", name: "Portuguese" },
+    { identifier: "bn", name: "Bengali" },
+    { identifier: "pa", name: "Punjabi" },
+    { identifier: "ko", name: "Korean" },
+    { identifier: "it", name: "Italian" },
+    { identifier: "ur", name: "Urdu" },
+    { identifier: "ta", name: "Tamil" },
+    { identifier: "te", name: "Telugu" },
+    { identifier: "mr", name: "Marathi" },
+    { identifier: "tr", name: "Turkish" },
+    { identifier: "vi", name: "Vietnamese" },
+    { identifier: "gu", name: "Gujarati" },
+    { identifier: "pl", name: "Polish" },
+    { identifier: "uk", name: "Ukrainian" },
+    { identifier: "fa", name: "Persian" },
+    { identifier: "ro", name: "Romanian" },
+    { identifier: "nl", name: "Dutch" },
+    { identifier: "th", name: "Thai" },
+    { identifier: "sv", name: "Swedish" },
+    { identifier: "id", name: "Indonesian" },
+    { identifier: "ms", name: "Malay" },
+  ];
+  
+  
   
