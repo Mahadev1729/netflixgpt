@@ -48,4 +48,8 @@ export const IMG_CDN_URL =
     ["id", "Indonesian"],
     ["ms", "Malay"],
   ].map(([identifier, name]) => ({ identifier, name }));
+
+
+  export const OPENAI_GPT_API_KEY =
+    "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";
   

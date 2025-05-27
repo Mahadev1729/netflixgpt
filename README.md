@@ -114,3 +114,4 @@ after resetup build Feature like form validati for Login and signup
  -- Multilingual for gpt search✔️
 
 ## integrate API Key {openai} 
+  cmd: npm i openai
