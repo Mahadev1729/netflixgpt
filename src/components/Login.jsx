@@ -65,7 +65,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+        
         })
         .catch((error) => {
           setErrorMessage(`${error.code} - ${error.message}`);

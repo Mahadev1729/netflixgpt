@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../utilis/userSlice";
 import { LOGO_URL, USER_AVATAR,SUPPORTED_LANGUAGES } from "../utilis/constant";
 import { toggleGptSearchView } from "../utilis/gptSlice";
+import { changeLanguage } from "../utilis/configSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -21,7 +22,7 @@ const Header = () => {
       })
       .catch((error) => {
         // An error happened.
-        console.log(error);
+       
       });
   };
   useEffect(() => {
@@ -54,12 +55,17 @@ const Header = () => {
        dispatch(toggleGptSearchView())
 
   };
+
+  const handleLanguageChange=(e)=>{
+     dispatch(changeLanguage(e.target.value))
+  }
   return (
     <div className="w-full absolute px-8 py-8 bg-gradient-to-b from from-black z-10 flex justify-between">
       <img className="w-80" src={LOGO_URL} alt="Logo" />
       {user && (
         <div className="w-full flex justify-end p-4">
           <select
+          onChange={handleLanguageChange}
             className="p-2 m-2 bg-cyan-500 text-white"
             >
             {SUPPORTED_LANGUAGES.map((lang) => (
