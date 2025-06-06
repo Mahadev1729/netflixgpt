@@ -8,6 +8,8 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
+  const { movieNames, movieResults } = useSelector((store) => store.gpt);
+
 
   // Search movie in TMDB
   const searchMovieTMDB = async (movie) => {
@@ -68,24 +70,61 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[35%] md:pt-[10%] flex justify-center">
+    <div className="pt-[35%] md:pt-[10%] px-4">
       <form
-        className="w-full md:w-1/2 bg-black grid grid-cols-12"
+        className="w-full max-w-2xl mx-auto bg-gray-900 bg-opacity-90 rounded-full shadow-lg flex items-center px-4 py-2"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
-          className="p-4 m-4 col-span-9"
+          className="flex-grow text-white bg-transparent focus:outline-none px-4 py-2 placeholder-gray-400"
           placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
-          className="col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg"
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].search}
         </button>
       </form>
+  
+      {/* Movie Results */}
+      <div className="mt-10 max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {movieResults &&
+          movieResults.map((movieList, index) =>
+            movieList?.[0] ? (
+              <div
+                key={index}
+                className="bg-gray-800 text-white rounded-lg overflow-hidden shadow-md"
+              >
+                <img
+                  src={
+                    "https://image.tmdb.org/t/p/w500" +
+                    movieList[0].poster_path
+                  }
+                  alt={movieList[0].title}
+                  className="w-full h-72 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold">
+                    {movieList[0].title}
+                  </h3>
+                  <p className="text-sm text-gray-400">
+                    {movieList[0].release_date}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div
+                key={index}
+                className="bg-gray-800 text-white rounded-lg p-4 text-center"
+              >
+                <p>No match for "{movieNames[index]}"</p>
+              </div>
+            )
+          )}
+      </div>
     </div>
   );
 };
