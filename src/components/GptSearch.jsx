@@ -1,4 +1,4 @@
-﻿import GptMovieSuggestion from "./GptMovieSuggestion";
+﻿
 import GptSearchBar from "./GptSearchBar";
 import { BACKGROUND_IMAGE } from "../utilis/constant";
 const GptSearch = () => {
@@ -12,7 +12,7 @@ const GptSearch = () => {
               />
             </div>
       <GptSearchBar />
-      <GptMovieSuggestion />
+     
     </div>
   );
 };
