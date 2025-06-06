@@ -79,7 +79,7 @@ const Header = () => {
             onClick={handleGptSearchClick}
             className=" bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-2 px-4 mx-4 my-2 rounded-lg shadow transition duration-200"
           >
-            {showGptSearch?"Home":"GPT Search"}
+            {showGptSearch?"Home":"Search Movies"}
           </button>
           <div className="flex items-center gap-4">
             <img

@@ -1,15 +1,36 @@
-﻿import { useState } from "react";
-import { useSelector } from "react-redux";
+﻿import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import lang from "../utilis/languageConstant";
+import { API_OPTIONS } from "../utilis/constant";
+import { addGptMovieResult } from "../utilis/gptSlice";
 
 const GptSearchBar = () => {
-  const userLang = useSelector((store) => store.config.lang);
-  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const langKey = useSelector((store) => store.config.lang);
+  const searchText = useRef(null);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  // Search movie in TMDB
+  const searchMovieTMDB = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_OPTIONS
+    );
+    const json = await data.json();
+    return json.results;
+  };
 
-    if (!query.trim()) return;
+  const handleGptSearchClick = async () => {
+    const userQuery = searchText.current.value;
+    if (!userQuery.trim()) return;
+
+    const gptQuery =
+      "Act as a Movie Recommendation system and suggest some movies for the query : " +
+      userQuery +
+      ". Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+
+    let movieListText = "";
 
     try {
       const response = await fetch("https://api.cohere.ai/v1/generate", {
@@ -19,39 +40,50 @@ const GptSearchBar = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "command-r", 
-          prompt: query,
+          model: "command-r",
+          prompt: gptQuery,
           max_tokens: 100,
           temperature: 0.7,
+          return_likelihoods: "NONE",
         }),
       });
 
       const data = await response.json();
-      console.log("Cohere Response:", data.generations?.[0]?.text);
-      // Optionally set it in state and display on UI
+      movieListText = data.generations?.[0]?.text?.trim();
+      console.log("Cohere result:", movieListText);
     } catch (err) {
       console.error("Cohere API Error:", err);
+      return;
     }
+
+    if (!movieListText) return;
+
+    const gptMovies = movieListText.split(",").map((m) => m.trim());
+    const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+    const tmdbResults = await Promise.all(promiseArray);
+
+    dispatch(
+      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+    );
   };
 
   return (
-    <div className="flex flex-col items-center pt-[12%] px-4">
+    <div className="pt-[35%] md:pt-[10%] flex justify-center">
       <form
-        className="flex items-center w-full max-w-2xl bg-white rounded-full shadow-lg overflow-hidden"
-        onSubmit={handleSearch}
+        className="w-full md:w-1/2 bg-black grid grid-cols-12"
+        onSubmit={(e) => e.preventDefault()}
       >
         <input
+          ref={searchText}
           type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="flex-grow px-6 py-4 text-lg text-gray-700 focus:outline-none placeholder-gray-500"
-          placeholder={lang[userLang].gptSearchPlaceholder}
+          className="p-4 m-4 col-span-9"
+          placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
-          type="submit"
-          className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-8 py-4 text-lg transition-all duration-200"
+          className="col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg"
+          onClick={handleGptSearchClick}
         >
-          {lang[userLang].search}
+          {lang[langKey].search}
         </button>
       </form>
     </div>

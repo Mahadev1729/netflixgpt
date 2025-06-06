@@ -2,7 +2,6 @@
 import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../utilis/movieSlice";
 import { API_OPTIONS } from "../utilis/constant";
-
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
 
